@@ -26,7 +26,7 @@ import java.util.List;
  */
 @Configuration
 @EnableSwagger2
-@Import({SpringDataRestConfiguration.class, RepositoryRestMvcConfiguration.class})
+@Import({SpringDataRestConfiguration.class})
 public class SwaggerConfig {
     @Bean
     public Docket productApi() {
