@@ -15,9 +15,24 @@ import java.io.Serializable;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class BaseResp<T extends Serializable> implements Serializable{
+public class BaseResp<T> {
 
     private T data;
     private int code;
-    private String desc;
+    private String message;
+
+    private static BaseRespBuilder builderOk() {
+        return BaseResp.builder().code(20000);
+    }
+
+    public static BaseResp ok() {
+        BaseRespBuilder builder = builderOk();
+        return builder.build();
+    }
+
+    public static <T> BaseResp<T> ok(T body) {
+        BaseResp baseResp = ok();
+        baseResp.setData(body);
+        return baseResp;
+    }
 }

@@ -20,25 +20,25 @@ import java.io.Serializable;
 public class UserController {
 
     @PostMapping("login")
-    public BaseResp<? extends Serializable> login(UserRequ userRequ) {
+    public BaseResp login(UserRequ userRequ) {
         TokenDto token = TokenDto.builder().token("admin").build();
-        return BaseResp.builder().code(20000).data(token).build();
+        return BaseResp.ok(token);
     }
 
     @GetMapping("info")
-    public BaseResp<? extends Serializable> info(String token) {
+    public BaseResp info(String token) {
         UserDto userDto = null;
         if ("admin".equals(token))
             userDto = UserDto.builder()
                     .avatar("https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif")
                     .name("admin")
-                    .roles(new String[]{"admin", "a"})
+                    .roles(new String[]{"admin"})
                     .build();
-        return BaseResp.builder().code(20000).data(userDto).build();
+        return BaseResp.ok(userDto);
     }
 
     @PostMapping("logout")
-    public BaseResp<? extends Serializable> logout() {
-        return BaseResp.builder().code(20000).build();
+    public BaseResp logout() {
+        return BaseResp.ok();
     }
 }
